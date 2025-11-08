@@ -1,4 +1,5 @@
 
+
 For Windows 11 Conda
 (problem solved for refractive index glass material surface get material function bug fixed.)
 
@@ -50,6 +51,19 @@ New_Lens.list_fields()
 New_Lens.add_surface(number=1,radius=10000000,thickness=1000000,glass='air',output=True)
 New_Lens.add_surface(number=2,radius=41.15909,thickness=6.097555 ,glass='S-BSM18_ohara',output=True)
 #opticspy testing version porting to Python 3.0
+
+
+#### FOR EXAMPLE TEST NOTES:
+
+https://sterncat.github.io/files/Interferometer_Method.html
+
+PSI = opticspy.interferometer_zenike.phase_shift(Z,boundary = True)
+
+boundary parameters should be removed.
+
+ PSI = opticspy.interferometer_zenike.phase_shift(Z)
+
+
 
 ## To test
 * mkdir /tmp/github/
