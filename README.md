@@ -1,4 +1,54 @@
 
+For Windows 11 Conda
+(problem solved for refractive index glass material surface get material function bug fixed.)
+
+---------------------------------
+git clone the project path
+
+https://github.com/muratkarahan/opticspy#
+
+---------------------------------
+
+
+conda create -n optics python=3.6
+
+pip uninstall matplotlib
+
+pip install numpy
+
+pip install "matplotlib<3"
+
+pip install cffi
+
+pip install unwrap
+
+pip install pyyaml
+
+
+-----------------------------------
+
+import sys
+sys.path.append(r"C:\Users\XXXX\Downloads")
+from opticspy.ray_tracing import *
+
+New_Lens = lens.Lens(lens_name='Triplet',creator='XF')
+New_Lens.FNO = 5
+New_Lens.lens_info()
+
+
+New_Lens.add_wavelength(wl = 656.30)
+New_Lens.add_wavelength(wl = 587.60)
+New_Lens.add_wavelength(wl = 486.10)
+New_Lens.list_wavelengths()
+
+New_Lens.add_field_YAN(angle=0)
+New_Lens.add_field_YAN(angle=14)
+New_Lens.add_field_YAN(angle=20)
+New_Lens.list_fields()
+
+
+New_Lens.add_surface(number=1,radius=10000000,thickness=1000000,glass='air',output=True)
+New_Lens.add_surface(number=2,radius=41.15909,thickness=6.097555 ,glass='S-BSM18_ohara',output=True)
 #opticspy testing version porting to Python 3.0
 
 ## To test
