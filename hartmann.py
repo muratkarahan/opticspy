@@ -44,7 +44,9 @@ def hartmann(coefficients, r, R):
 		M.append(tmp)
 	fig = __plt__.figure(1,figsize=(6, 6))
 	ax = fig.gca()
-	ax.set_axis_bgcolor('black')
+	#ax.set_axis_bgcolor('black')
+	ax.set_facecolor('black')
+
 	__plt__.title('Hartmann Spotdiagram',fontsize=18)
 	__plt__.plot(Ax_list,Ay_list,'wo')
 	__plt__.show()
