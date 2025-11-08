@@ -58,19 +58,35 @@ class RefractiveIndex:
         #         book.pages = pages
 
     def getMaterialFilename(self, shelf, book, page):
-        cwd = os.getcwd()
-        rootdir = cwd + "/opticspy/ray_tracing/glass_database/"
-        glass_catalog = book
-        filename = page + '.yml'
+        glass_catalog = book              # örn: "ohara"
+        filename = page + '.yml'          # örn: "S-BSM18.yml"
+
+        # PROJE KÖKÜNDEN CAM DB'YE GİT
+        # self.referencePath zaten opticspy kökünü tutuyor
+        rootdir = os.path.join(self.referencePath)
+
+        catalog_root = None
+        catalog_files = []
+
+        # İlgili katalog klasörünü bul (ohara, schott, hoya...)
         for root, subFolders, files in os.walk(rootdir):
             if root.endswith(glass_catalog):
+                catalog_root = root
+                catalog_files = files
                 break
-        for f in files:
+
+        if catalog_root is None:
+            raise ValueError("Glass catalog '%s' not found under %s"
+                            % (glass_catalog, rootdir))
+
+        # Katalog içindeki dosyalar arasında aranan camı bul
+        for f in catalog_files:
             if f == filename:
-                filepath = os.path.join(self.referencePath,root,filename)
-                break
-        return filepath
-        # """
+                return os.path.join(catalog_root, f)
+
+        # Hâlâ bulamadıysa:
+        raise ValueError("Glass file '%s' not found in catalog '%s'"
+                        % (filename, glass_catalog))
 
         # :param shelf:
         # :param book:
